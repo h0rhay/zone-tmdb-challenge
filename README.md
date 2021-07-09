@@ -1,13 +1,14 @@
 
 <h1 align="center">
-  George Clark Starling Challenge
+  George Clark Zone Challenge
 </h1>
 
-Ready to view [**HERE**](https://georgec-starling-test.surge.sh/)
+Ready to view [**HERE**](zone-movie-challenge.surge.sh)
 
-_A Gatsby starter using data provided by Starling to create a simple blog list page_
+_A simple Gatsby starter using TMDB api to display movie info_
 
 Tech used:
+- React
 - Gatsby
 - Styled components
 - React Context
@@ -15,4 +16,4 @@ Tech used:
 Would like to improve:
 - Testing
 - A11y
-- Theme-ing
+- Theming
