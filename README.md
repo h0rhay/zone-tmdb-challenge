@@ -3,7 +3,7 @@
   George Clark Zone Challenge
 </h1>
 
-Ready to view [**HERE**](zone-movie-challenge.surge.sh)
+Ready to view [**HERE**](http://zone-movie-challenge.surge.sh/)
 
 _A simple Gatsby starter using TMDB api to display movie info_
 
