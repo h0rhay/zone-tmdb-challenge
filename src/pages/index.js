@@ -123,10 +123,6 @@ const IndexContent = () => {
       </div>
       <div>
         <MovieContent>
-          {console.log('filteredMovies', filteredMovies)}
-          {console.log('genreFilteredMovies', genreFilteredMovies)}
-          {console.log('ratingFilteredMovies', ratingFilteredMovies)}
-          {rating && console.log('rating', rating)}
           {(filteredMovies && !selectedGenres && !rating) &&
               filteredMovies?.map(mov => (
                 <MovieTile key={mov?.id} movie={mov} />
