@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const RatingWrap = styled.div`
@@ -25,18 +25,27 @@ const RatingWrap = styled.div`
     & ~ button {
       margin-left: 1rem;
     }
+    &.active {
+      background-color: var(--white);
+      color: var(--primary-color);
+    }
   }
 `
 
 const RatingFilter = ({ rating, setRating }) => {
+  const [clicked, setClicked] = useState(false)
+  const handleClick = (i) => {
+    setClicked(i)
+    setRating(i)
+  }
   return (
     <RatingWrap>
       <h3>Filter by Rating:</h3>
-      <button onClick={() => setRating(1)}><span role='img' aria-label='Rating Button'>⭐️</span></button>
-      <button onClick={() => setRating(2)}><span role='img' aria-label='Rating Button'>⭐️⭐️</span></button>
-      <button onClick={() => setRating(3)}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️</span></button>
-      <button onClick={() => setRating(4)}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️⭐️</span></button>
-      <button onClick={() => setRating(5)}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️⭐️⭐️</span></button>
+      <button onClick={() => handleClick(1)} className={`${clicked === 1 && `active`}`}><span role='img' aria-label='Rating Button'>⭐️</span></button>
+      <button onClick={() => handleClick(2)} className={`${clicked === 2 && `active`}`}><span role='img' aria-label='Rating Button'>⭐️⭐️</span></button>
+      <button onClick={() => handleClick(3)} className={`${clicked === 3 && `active`}`}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️</span></button>
+      <button onClick={() => handleClick(4)} className={`${clicked === 4 && `active`}`}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️⭐️</span></button>
+      <button onClick={() => handleClick(5)} className={`${clicked === 5 && `active`}`}><span role='img' aria-label='Rating Button'>⭐️⭐️⭐️⭐️⭐️</span></button>
     </RatingWrap>
   )
 }
