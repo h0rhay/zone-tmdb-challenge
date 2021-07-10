@@ -13,10 +13,10 @@ const Card = styled.a`
   width: 48%;
   margin: 1.5rem 0;
   transition: transform 0.3s cubic-bezier(.43,.41,.22,.91);
-  @media(min-width: 48rem) {
+  @media(min-width: 60rem) {
     width: 30%;
   }
-  @media(min-width: 60rem) {
+  @media(min-width: 76rem) {
     width: 22.5%;
   }
   &:hover {

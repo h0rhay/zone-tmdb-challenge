@@ -37,13 +37,13 @@ const Genres = ({ genres, selectedGenres, setSelectedGenres }) => {
   return (
     <GenreWrap>
       {genres && genres.map(genre => <button 
-                                      key={genre.id}
-                                      id={genre.id}
-                                      onClick={() => handleClick(genre.id)}
-                                      className={`${clicked === genre.id && `active`}`}
-                                     >
-                                       {genre.name}
-                                      </button>)}
+        key={genre.id}
+        id={genre.id}
+        onClick={() => handleClick(genre.id)}
+        className={`${clicked === genre.id && `active`}`}
+        >
+          {genre.name}
+        </button>)}
     </GenreWrap>
   )
 }
