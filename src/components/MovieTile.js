@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import buildImagePath from '../utils/buildImagePath'
+import { GenresContext } from '../hooks/GenresContextHook'
 
 const Card = styled.a`
   text-decoration: none;
@@ -34,13 +35,7 @@ const Title = styled.h3`
   font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );
   min-height: 3.25rem;
   margin-bottom: 0.5rem;
-  @media(min-width:768px) {
-    min-height: 10vmin;
-  }
-  @media(min-width:960px) {
-    min-height: 12vmin;
-  }
-  
+  text-align: center;
 `
 
 const CardImage = styled.div`
@@ -104,17 +99,30 @@ const Tag = styled.li`
   }
 `
 
-const MovieTile = ({ movie }) => (
-  <Card href='/' target='_blank' rel='noopener noreferer'>
-    <CardImage imgSrc={buildImagePath(movie?.poster_path)} className='card__image' />
-    <CardContent>
-    <Title>{movie?.title}</Title>
-      {/* <p>{post.description}&hellip;</p>
-      <Tags>
-        {post.tags.map((tag, i) => <Tag key={i}><span>{tag}</span></Tag>)}
-      </Tags> */}
-    </CardContent>
-  </Card>
-)
+const MovieTile = ({ movie }) => {
+  const { genres } = useContext(GenresContext)
+  return (
+    <Card href='/' target='_blank' rel='noopener noreferer'>
+      <CardImage imgSrc={buildImagePath(movie?.poster_path)} className='card__image' />
+      <CardContent>
+      <Title>{movie?.title}</Title>
+        {genres && console.log('genres', genres)}
+        {movie.genre_ids && console.log('movie genres', movie.genre_ids)}
+        <Tags>
+        {
+          movie.genre_ids.map(mid => {
+            return genres && genres.map(g => {
+              if(mid === g.id) {
+                return <Tag key={mid}><span>{g.name}</span></Tag>
+              }
+            })
+          })
+        }
+        </Tags>
+      </CardContent>
+    </Card>
+  )
+}
+
 
 export default MovieTile
