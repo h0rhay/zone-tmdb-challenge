@@ -106,8 +106,6 @@ const MovieTile = ({ movie }) => {
       <CardImage imgSrc={buildImagePath(movie?.poster_path)} className='card__image' />
       <CardContent>
       <Title>{movie?.title}</Title>
-        {genres && console.log('genres', genres)}
-        {movie.genre_ids && console.log('movie genres', movie.genre_ids)}
         <Tags>
         {
           movie.genre_ids.map(mid => {

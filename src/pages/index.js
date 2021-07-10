@@ -3,13 +3,20 @@ import styled from 'styled-components'
 import Layout from '../components/Layout'
 import { SearchContext } from '../hooks/SearchContextHook'
 import { GenresContext } from '../hooks/GenresContextHook'
+import { RatingContext } from '../hooks/RatingContextHook'
 import getMovieData from '../services/getMovieData'
 import MovieTile from '../components/MovieTile'
 import Loader from '../components/Loader';
 import Genres from '../components/genres';
+import RatingFilter from '../components/ratingfilter';
 
-const PageWrap = styled.section`
-
+const PageWrap = styled.div`
+  .heading-no-match {
+    color: var(--white);
+    text-align:center;
+    width:90vw;
+    padding-top:2rem;
+  }
 `
 
 const MovieContent = styled.section`
@@ -21,8 +28,10 @@ const MovieContent = styled.section`
 const IndexContent = () => {
   const [movies, setMovies] = useState()
   const [genreFilteredMovies, setGenreFilteredMovies] = useState()
+  const [ratingFilteredMovies, setRatingFilteredMovies] = useState()
   const { searchQuery } = useContext(SearchContext) 
   const { genres, setGenres, selectedGenres, setSelectedGenres } = useContext(GenresContext)
+  const { rating, setRating } = useContext(RatingContext)
 
   const filterMovies = (movies, query) => {
     if (!query) {
@@ -55,6 +64,31 @@ const IndexContent = () => {
     })
   }
 
+  const filterMoviesByRating = (movies, rating) => {
+    let movieList = []
+    if (!rating) {
+      return movies
+    }
+    return movies?.filter(movie => {
+      if(rating === 1 && movie.vote_average < 2) {
+        return movieList.push(movie)
+      }
+      if(rating === 2 && movie.vote_average > 2 && movie.vote_average < 4) {
+        return movieList.push(movie)
+      }
+      if(rating === 3 && movie.vote_average > 4 && movie.vote_average < 6) {
+        return movieList.push(movie)
+      }
+      if(rating === 4 && movie.vote_average > 6 && movie.vote_average < 8) {
+        return movieList.push(movie)
+      }
+      if(rating === 5 && movie.vote_average > 8) {
+        return movieList.push(movie)
+      }
+      return setRatingFilteredMovies(movieList)
+    })
+  }
+
   const orderedMovies = orderPopularMovies(movies)
   
   const filteredMovies = filterMovies(orderedMovies, searchQuery)
@@ -67,34 +101,58 @@ const IndexContent = () => {
     filterMoviesByGenre(movies, selectedGenres)
   }, [movies, selectedGenres])
 
+  useEffect(() => {
+    filterMoviesByRating(movies, rating)
+  }, [movies, rating])
+
   return (
     <PageWrap>
-      <Genres 
-        genres={genres}
-        setGenres={setGenres}
-        selectedGenres={selectedGenres}
-        setSelectedGenres={setSelectedGenres}
-      />
-      <MovieContent>
-        {console.log('filteredMovies', filteredMovies)}
-        {console.log('genreFilteredMovies', genreFilteredMovies)}
-        {(filteredMovies && !selectedGenres) &&
-            filteredMovies?.map(mov => (
-              <MovieTile key={mov?.id} movie={mov} />
-            ))
+      <div>
+        <Genres 
+          genres={genres}
+          setGenres={setGenres}
+          selectedGenres={selectedGenres}
+          setSelectedGenres={setSelectedGenres}
+        />
+      </div>
+      <div>
+        <RatingFilter 
+          rating={rating}
+          setRating={ setRating }
+        />
+      </div>
+      <div>
+        <MovieContent>
+          {console.log('filteredMovies', filteredMovies)}
+          {console.log('genreFilteredMovies', genreFilteredMovies)}
+          {console.log('ratingFilteredMovies', ratingFilteredMovies)}
+          {rating && console.log('rating', rating)}
+          {(filteredMovies && !selectedGenres && !rating) &&
+              filteredMovies?.map(mov => (
+                <MovieTile key={mov?.id} movie={mov} />
+                ))
+              }
+          {(genreFilteredMovies && selectedGenres) &&
+              genreFilteredMovies?.map(mov => (
+                <MovieTile key={mov?.id} movie={mov} />
+                ))
+              }
+          {(genreFilteredMovies && selectedGenres && !genreFilteredMovies.length) &&
+            <h2 className='heading-no-match'>No matching Genres</h2>
           }
-        {(genreFilteredMovies && selectedGenres) &&
-            genreFilteredMovies?.map(mov => (
-              <MovieTile key={mov?.id} movie={mov} />
-            ))
+          {(ratingFilteredMovies && rating) &&
+              ratingFilteredMovies?.map(mov => (
+                <MovieTile key={mov?.id} movie={mov} />
+                ))
+              }
+          {(ratingFilteredMovies && rating && !ratingFilteredMovies.length) &&
+            <h2 className='heading-no-match'>No movies that bad!</h2>
           }
-        {(genreFilteredMovies && selectedGenres && !genreFilteredMovies.length) &&
-            <h2>No matching Genres</h2>
-          }
-        {(!filteredMovies && !selectedGenres) &&
-            <Loader />
-          }
-      </MovieContent>
+          {(!filteredMovies && !selectedGenres) &&
+              <Loader />
+            }
+        </MovieContent>
+      </div>
     </PageWrap>
   )
 }

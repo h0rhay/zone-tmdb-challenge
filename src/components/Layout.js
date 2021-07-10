@@ -5,6 +5,7 @@ import GlobalStyle from '../styles/GlobalStyle'
 import Header from './Header'
 import Footer from './Footer'
 import { GenresContextProvider } from '../hooks/GenresContextHook'
+import { RatingContextProvider } from '../hooks/RatingContextHook'
 
 export const SearchContext = createContext()
 
@@ -15,11 +16,13 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <SearchContextProvider>
         <GenresContextProvider>
-          <Header />
-          <main>
-            { children }
-          </main>
-          <Footer />
+          <RatingContextProvider>
+            <Header />
+            <main>
+              { children }
+            </main>
+            <Footer />
+          </RatingContextProvider>
         </GenresContextProvider>
       </SearchContextProvider>
     </>
