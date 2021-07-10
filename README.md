@@ -14,6 +14,8 @@ The Basic funtionality is there, as per the brief. Although a bit of a shortcut 
 
 There are bugs with how the Genre and Ratings filtering isnt working together, this would be solved with a more considered approach, and more time to implement better global state.
 
+_To run: simply clone, `npm i`, and `npm start`_
+
 Tech used:
 - React
 - Gatsby
