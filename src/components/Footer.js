@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => (
   <footer>
     <section>
-      <p>@ copy;</p>
+      <p>Footer 🥾⚽️</p>
     </section>
   </footer>
 )
