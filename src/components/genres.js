@@ -29,20 +29,17 @@ const GenreWrap = styled.div`
 
 const Genres = ({ genres, selectedGenres, setSelectedGenres }) => {
   const [clicked, setClicked] = useState(false)
-  const handleClick = (i, value) => {
-    console.log(value)
+  const handleClick = (i) => {
     setClicked(i)
-    setSelectedGenres(value)
+    setSelectedGenres(i)
   }
 
   return (
     <GenreWrap>
-      {console.log('genres', genres)}
-      {console.log('selectedGenres', selectedGenres)}
       {genres && genres.map(genre => <button 
                                       key={genre.id}
                                       id={genre.id}
-                                      onClick={() => handleClick(genre.id, genre.name)}
+                                      onClick={() => handleClick(genre.id)}
                                       className={`${clicked === genre.id && `active`}`}
                                      >
                                        {genre.name}

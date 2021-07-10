@@ -28,8 +28,8 @@ const Card = styled.a`
 `
 
 const Title = styled.h3`
-  --minFontSize: 1.3rem;
-  --maxFontSize: 2rem;
+  --minFontSize: 1.1rem;
+  --maxFontSize: 1.5rem;
   --scaler: 2.5vw;
   font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );
   min-height: 3.25rem;
@@ -106,9 +106,9 @@ const Tag = styled.li`
 
 const MovieTile = ({ movie }) => (
   <Card href='/' target='_blank' rel='noopener noreferer'>
-    <CardImage imgSrc={buildImagePath(movie.poster_path)} className='card__image' />
+    <CardImage imgSrc={buildImagePath(movie?.poster_path)} className='card__image' />
     <CardContent>
-    <Title>{movie.title}</Title>
+    <Title>{movie?.title}</Title>
       {/* <p>{post.description}&hellip;</p>
       <Tags>
         {post.tags.map((tag, i) => <Tag key={i}><span>{tag}</span></Tag>)}

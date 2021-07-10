@@ -12,7 +12,7 @@ const GenresContext = createContext(defaultState)
 
 const GenresContextProvider = props => {
   const [genres, setGenres] = useState('')
-  const [selectedGenres, setSelectedGenres] = useState('')
+  const [selectedGenres, setSelectedGenres] = useState()
 
   useEffect(() => {
     getGenresData().then(genreData => setGenres(genreData['genres']))

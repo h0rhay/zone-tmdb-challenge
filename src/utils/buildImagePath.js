@@ -1,2 +1,2 @@
-const buildImagePath = (path) => `https://image.tmdb.org/t/p/w500/${path}`
+const buildImagePath = (path) => `https://image.tmdb.org/t/p/w400/${path}`
 export default buildImagePath
