@@ -104,7 +104,7 @@ const Tag = styled.li`
   }
 `
 
-const BlogTile = ({ movie }) => (
+const MovieTile = ({ movie }) => (
   <Card href='/' target='_blank' rel='noopener noreferer'>
     <CardImage imgSrc={buildImagePath(movie.poster_path)} className='card__image' />
     <CardContent>
@@ -117,4 +117,4 @@ const BlogTile = ({ movie }) => (
   </Card>
 )
 
-export default BlogTile
+export default MovieTile

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import GlobalStyle from '../styles/GlobalStyle'
 import Header from './Header'
 import Footer from './Footer'
+import { GenresContextProvider } from '../hooks/GenresContextHook'
 
 export const SearchContext = createContext()
 
@@ -13,11 +14,13 @@ const Layout = ({ children }) => {
       <Helmet title="Zone Challenge" />
       <GlobalStyle />
       <SearchContextProvider>
-        <Header />
-        <main>
-          { children }
-        </main>
-        <Footer />
+        <GenresContextProvider>
+          <Header />
+          <main>
+            { children }
+          </main>
+          <Footer />
+        </GenresContextProvider>
       </SearchContextProvider>
     </>
   )

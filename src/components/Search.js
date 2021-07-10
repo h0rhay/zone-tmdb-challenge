@@ -109,6 +109,7 @@ const Search = ({ searchQuery, setSearchQuery }) => {
   const handleToggle = (e) => {
     e.preventDefault()
     setIsOpen(!isOpen)
+    setSearchQuery('')
   }
 
   return (

@@ -2,19 +2,26 @@ import React, { useEffect, useState, useContext } from "react"
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import { SearchContext } from '../hooks/SearchContextHook'
-import getMovies from '../services/getData'
+import { GenresContext } from '../hooks/GenresContextHook'
+import getMovieData from '../services/getMovieData'
 import MovieTile from '../components/MovieTile'
 import Loader from '../components/Loader';
+import Genres from '../components/genres';
+
+const PageWrap = styled.section`
+
+`
 
 const MovieContent = styled.section`
   justify-content: space-between;
 `
 
 // Gatsby reorders Layout to be a child of IndexPage making it difficult to work with global context.
-// Placing the page content in a child component is a simple workaround for undefined context value.
+// Creating the page content in a child component is a simple workaround for undefined context value.
 const IndexContent = () => {
   const [movies, setMovies] = useState()
   const { searchQuery } = useContext(SearchContext) 
+  const { genres, setGenres, selectedGenres, setSelectedGenres } = useContext(GenresContext)
 
   const filterMovies = (movies, query) => {
     if (!query) {
@@ -42,20 +49,29 @@ const IndexContent = () => {
   const filteredMovies = filterMovies(orderedMovies, searchQuery)
 
   useEffect(() => {
-    getMovies().then(movieData => setMovies(movieData['results']))
+    getMovieData().then(movieData => setMovies(movieData['results']))
   }, [])
 
   return (
-    <MovieContent>
-      {filteredMovies && console.log('filteredMovies', filteredMovies)}
-      {filteredMovies ?
-        filteredMovies?.map(mov => (
-          <MovieTile key={mov.date} movie={mov} />
-        ))
-        :
-        <Loader/>
-      }
-    </MovieContent>
+    <PageWrap>
+      <Genres 
+        genres={genres}
+        setGenres={setGenres}
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+      />
+      <MovieContent>
+        {filteredMovies && console.log('filteredMovies', filteredMovies)}
+        {filteredMovies ?
+          filteredMovies?.map(mov => (
+            <MovieTile key={mov.id} movie={mov} />
+            ))
+            :
+            <Loader/>
+          }
+        
+      </MovieContent>
+    </PageWrap>
   )
 }
 

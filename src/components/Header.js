@@ -64,7 +64,7 @@ const Header = () => {
       <HeaderSection>
         <TitleContainer>
           <a href='/'>
-            <Title>Movies Explorer</Title>
+            <Title>Movie Explorer</Title>
           </a>
         </TitleContainer>
         <SearchContainer>
