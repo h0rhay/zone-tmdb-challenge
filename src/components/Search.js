@@ -10,6 +10,10 @@ const SearchForm = styled.form`
     box-sizing: border-box;
     width: 50px;
     height: 50px;
+    @media(max-width: 889px) {
+      width: 30px;
+      height: 30px;
+    }
     border: 4px solid #ffffff;
     border-radius: 50%;
     background: none;
@@ -25,10 +29,14 @@ const SearchForm = styled.form`
   .search {
     background: none;
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0;
     height: 50px;
     width: 50px;
+    @media(max-width: 889px) {
+      width: 30px;
+      height: 30px;
+    }
     padding: 0;
     border-radius: 100%;
     outline: 0;
@@ -50,6 +58,10 @@ const SearchForm = styled.form`
     transform: rotate(45deg);
     margin-top: 26px;
     margin-left: 17px;
+    @media(max-width: 889px) {
+      margin-top: 16px;
+      margin-left: 10px;
+    }
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
   }
@@ -58,6 +70,9 @@ const SearchForm = styled.form`
     transition: 0.4s ease-in-out;
     transition-delay: 0.4s;
     transform: translateX(250px);
+    @media(max-width: 889px) {
+      left: 17px;
+    }
   }
 
   .close:before {
@@ -89,6 +104,9 @@ const SearchForm = styled.form`
     padding: 0 40px 0 10px;
     width: 300px;
     height: 50px;
+    @media(max-width: 889px) {
+      height: 30px;
+    }
     border: 4px solid #ffffff;
     border-radius: 0;
     background: none;

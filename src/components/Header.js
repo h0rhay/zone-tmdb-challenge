@@ -35,14 +35,14 @@ const SearchContainer = styled.div`
   width: 30%;
   @media(max-width:889px) {
     width:100%;
-    margin: 1rem 0;
+    margin: 2rem 0;
     justify-content: center;
     align-items: flex-start;
   }
 `
 
 const Title = styled.h1`
-  --minFontSize: 1.6rem;
+  --minFontSize: 2.4rem;
   --maxFontSize: 8rem;
   --scaler: 5vw;
   font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );

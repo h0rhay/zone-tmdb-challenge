@@ -5,6 +5,9 @@ const GenreWrap = styled.div`
   text-align: center;
   max-width:80rem;
   margin: 0 auto;
+  @media(min-width: 889px) {
+    padding-top: 2rem;
+  }
   button {
     font: inherit;
     background-color: transparent;

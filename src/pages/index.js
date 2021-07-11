@@ -7,8 +7,8 @@ import { RatingContext } from '../hooks/RatingContextHook'
 import getMovieData from '../services/getMovieData'
 import MovieTile from '../components/MovieTile'
 import Loader from '../components/Loader';
-import Genres from '../components/genres';
-import RatingFilter from '../components/ratingfilter';
+import Genres from '../components/Genres';
+import RatingFilter from '../components/Ratingfilter';
 
 const PageWrap = styled.div`
   .heading-no-match {
